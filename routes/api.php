@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::resource('posts','PostController@index');
+Route::get('/', 'App\Http\Controllers\PostController@index');
+Route::get('post/view/{id}', 'App\Http\Controllers\PostController@show');
+Route::get('post/recent', 'App\Http\Controllers\PostController@recent');
+Route::get('post/page', 'App\Http\Controllers\PostController@paginate');
+Route::get('post/author/{id}', 'App\Http\Controllers\PostController@author');
