@@ -11,13 +11,19 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function hello()
+    {
+      return response()-json([
+        'hello' => 'world!'
+      ],200)
+    }
     public function index()
     {
        // All Posts
-       $posts = Post::all();   // Return Json Response
-       return response()->json([
-          'posts' => $posts
-       ],200);
+      $data = Post::with(['author', 'category'])->paginate(10);
+      return response()->json([
+        'post' => $data
+      ],200);
     }
     /**
      * Display the specified resource.
