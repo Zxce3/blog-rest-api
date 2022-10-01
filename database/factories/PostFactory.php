@@ -4,28 +4,24 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use Stephenjude\FilamentBlog\Models\Post;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
- */
 class PostFactory extends Factory
 {
     /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
+     * @var string
      */
-    public function definition()
+    protected $model = Post::class;
+
+    public function definition(): array
     {
         return [
-            'blog_author_id' => '1',
-            'blog_category_id' => '1',
-            'title' => fake()->name(),
-            'banner' => null,
-            'slug' => Str::random(10),
-            'excerpt' => fake()->text(50),
-            'content' => fake()->paragraph(),
-            'published_at' => now(),
+            'title' => $title = $this->faker->unique()->sentence(4),
+            'slug' => Str::slug($title),
+            'content' => $this->faker->realText(),
+            'published_at' => $this->faker->dateTimeBetween('-6 month', '+1 month'),
+            'created_at' => $this->faker->dateTimeBetween('-1 year', '-6 month'),
+            'updated_at' => $this->faker->dateTimeBetween('-5 month', 'now'),
         ];
     }
 }
