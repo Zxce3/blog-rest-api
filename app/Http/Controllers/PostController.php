@@ -15,7 +15,7 @@ class PostController extends Controller
     {
       return response()-json([
         'hello' => 'world!'
-      ],200)
+      ],200);
     }
     public function index()
     {
