@@ -15,7 +15,8 @@ use App\Http\Controllers\PostController;
 */
 
 // Route::resource('posts','PostController@index');
-Route::get('/', 'App\Http\Controllers\PostController@index');
+Route::get('/', 'App\Http\Controllers\PostController@hello');
+Route::get('post', 'App\Http\Controllers\PostController@index');
 Route::get('post/view/{id}', 'App\Http\Controllers\PostController@show');
 Route::get('post/recent', 'App\Http\Controllers\PostController@recent');
 Route::get('post/page', 'App\Http\Controllers\PostController@paginate');
